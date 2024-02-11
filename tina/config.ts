@@ -98,7 +98,7 @@ export default defineConfig({
           filename: {
             slugify: (values) => {
               return `${(values.title || "")}`
-              .toLocaleLowerCase().replace(/ /g, "-")
+              .toLowerCase().replace(/ /g, "-")
               .replace(/[^\w\.\/-\s]/gi, "")
             }
           }
