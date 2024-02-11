@@ -51,10 +51,56 @@ export default defineConfig({
         ui: {
           // This is an DEMO router. You can remove this to fit your site
           router: ({ document }) => {
-            if(document._sys.filename==="home"){
+            if(document._sys.filename==="/home"){
               return `/`
             }
             return undefined
+          }
+        },
+      },
+      {
+        name: "post",
+        label: "Posts",
+        path: "content/post",
+        format: "mdx",
+        fields: [
+          {
+            name: "title",
+            type: "string",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            name: "date",
+            type: "datetime",
+            label: "Date",
+            required: true
+          },
+          {
+            name: "body",
+            type: "rich-text",
+            label: "Body",
+            isBody: true,
+          },
+        ],
+        defaultItem: () => {
+          return {
+            title: "New Post",
+            date: new Date(),
+          }
+        },
+        ui: {
+          // This is an DEMO router. You can remove this to fit your site
+          router: ({ document }) => {
+            return `/posts/${document._sys.filename}`
+          },
+          filename: {
+            slugify: (values) => {
+              return `${(values.title || "")}`
+              .toLocaleLowerCase().replace(/ /g, "-")
+              .replace(/[^\w\.\/-\s]/gi, "")
+            }
           }
         },
       },

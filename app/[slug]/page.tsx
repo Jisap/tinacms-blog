@@ -4,11 +4,11 @@ import { notFound } from "next/navigation";
 
 
 
-export default async function HomePage() {
+export default async function Page({ params }: {params: { slug:string }}) {
 
   const result = await client.queries
     .page({
-      relativePath: "/home.mdx"
+      relativePath: `${params.slug}.mdx`
     })
     .then((result) => {
       return result
@@ -17,6 +17,6 @@ export default async function HomePage() {
       console.log(error)
       return notFound()
     })
-  
+
   return <PageComponent {...result} />
 }

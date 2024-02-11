@@ -21,10 +21,10 @@ export function PageComponent( props: {
     <article>
       <h1>
         {title}
+      </h1>
         <section>
           <TinaMarkdown content={content} />
         </section>
-      </h1>
     </article>  
   )
 }
