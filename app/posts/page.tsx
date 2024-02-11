@@ -1,11 +1,13 @@
 
 
-import React from 'react'
+import { PostListPageComponent } from '@/components/app/posts/post-list-page'
+import client from '@/tina/__generated__/client'
 
-const page = () => {
-  return (
-    <div>page</div>
-  )
+export default async function PostListPage() {
+
+  const result = await client.queries.postConnection(); // Petición a components/post sobre todos los post que existan
+
+  return <PostListPageComponent {...result} /> // muestra esos posts
+  
 }
 
-export default page

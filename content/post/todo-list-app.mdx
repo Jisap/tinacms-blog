@@ -1,0 +1,105 @@
+---
+title: 'Building a Todo List App with Vite, React, and TypeScript'
+date: 2024-01-10T05:00:00.000Z
+tags:
+  - tutorial
+  - react
+  - vite
+  - typescript
+---
+
+In this tutorial, we will walk through the process of creating a simple Todo List application using Vite, React, and TypeScript. This combination offers a fast, modern, and type-safe development experience.
+
+## Step 1: Setting Up the Project
+
+First, we need to create a new project using Vite with React and TypeScript. Open your terminal and run:
+
+```bash
+npm create vite@latest my-todo-app --template react-ts
+```
+
+Navigate into your project directory:
+
+```bash
+cd my-todo-app
+```
+
+## Step 2: Understanding the Project Structure
+
+Vite sets up a basic project structure for you. Key folders and files include:
+
+* `src/`: Where your React components and TypeScript files will reside.
+* `index.html`: The entry point of your app.
+* `vite.config.ts`: Configuration file for Vite.
+
+## Step 3: Creating the Todo List Components
+
+Inside the `src/` directory, create two files: `App.tsx` and `TodoList.tsx`.
+
+### App Component (App.tsx)
+
+```typescript
+import React, { useState } from 'react';
+import TodoList from './TodoList';
+
+function App() {
+  const [todos, setTodos] = useState<string[]>([]);
+  const [input, setInput] = useState('');
+
+  const addTodo = () => {
+    setTodos([...todos, input]);
+    setInput('');
+  };
+
+  return (
+    <div>
+    <input value= { input } onChange = {(e) => setInput(e.target.value)
+} />
+  < button onClick = { addTodo } > Add Todo < /button>
+    < TodoList items = { todos } />
+      </div>
+  );
+}
+
+export default App;
+```
+
+### TodoList Component (TodoList.tsx)
+
+```typescript
+import React from 'react';
+
+interface TodoListProps {
+  items: string[];
+}
+
+const TodoList: React.FC<TodoListProps> = ({ items }) => {
+  return (
+    <ul>
+    {
+      items.map((item, index) => (
+        <li key= { index } > { item } < /li>
+      ))
+    }
+    < /ul>
+  );
+};
+
+export default TodoList;
+```
+
+## Step 4: Running the Application
+
+Start your development server:
+
+```bash
+npm run dev
+```
+
+Your app will be available at [http://localhost:3000](http://localhost:3000).
+
+## Conclusion
+
+You have now created a basic Todo List application using Vite, React, and TypeScript. This setup provides a fast development server, React for UI, and TypeScript for type safety.
+
+Happy coding!

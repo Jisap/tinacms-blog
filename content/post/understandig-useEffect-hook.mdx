@@ -1,0 +1,71 @@
+---
+title: Understanding the useEffect Hook in React
+date: 2023-12-20T05:00:00.000Z
+---
+
+React's `useEffect` hook is a cornerstone of functional component development, allowing side effects in your components. This blog post explains how `useEffect` works and its use cases.
+
+## Introduction to useEffect
+
+The `useEffect` hook lets you perform side effects in function components. Side effects can be data fetching, subscriptions, or manually changing the DOM. It serves the same purpose as `componentDidMount`, `componentDidUpdate`, and `componentWillUnmount` in React class lifecycle methods.
+
+## Basic Syntax of useEffect
+
+The basic syntax of `useEffect` is as follows:
+
+```javascript
+useEffect(() => {
+  // Your code here
+}, [dependencies])
+```
+
+## Parameters of useEffect
+
+- **Effect Callback**: The function passed to `useEffect`. The logic you want to run as the effect goes here.
+- **Dependencies Array**: An array of dependencies that, if changed, will re-trigger the effect. If the array is empty `[]`, the effect runs once after the initial render.
+
+## Use Cases of useEffect
+
+### 1. Running Once on Mount
+
+To mimic `componentDidMount` behavior, use an empty dependency array:
+
+```javascript
+useEffect(() => {
+  // Code to run on mount
+}, [])
+```
+
+### 2. Running on Dependency Change
+
+To run an effect when specific variables change, include them in the dependencies array:
+
+```javascript
+useEffect(() => {
+  // Code to run when dependencies change
+}, [dependency1, dependency2])
+```
+
+### 3. Cleaning Up
+
+To mimic the `componentWillUnmount` behavior, return a function from your effect:
+
+```javascript
+useEffect(() => {
+  // Setup
+  return () => {
+    // Cleanup
+  }
+}, [dependencies])
+```
+
+## Rules of Hooks
+
+- Call hooks at the top level in your component.
+- Call hooks only from React function components or custom hooks.
+
+## Conclusion
+
+`useEffect` is a versatile hook for managing side effects in functional components. It replaces several lifecycle methods from class components and provides a unified API for handling side effects.
+
+Stay tuned for more React insights!
