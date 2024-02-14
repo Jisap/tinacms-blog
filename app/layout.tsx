@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header from "@/components/header";
 import { ThemeProvider } from "@/components/ThemeProvider";
+import Footer from "@/components/Footer";
 
 
 
@@ -30,6 +31,7 @@ export default function RootLayout({
             <main>
               {children}
             </main>
+            <Footer />
           </div>
         </ThemeProvider>
       </body>
