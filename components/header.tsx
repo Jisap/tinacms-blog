@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { ThemeToggle } from "./ThemeToggle";
 
 export default function Header() {
   return (
@@ -7,6 +8,9 @@ export default function Header() {
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
         <Link href="/posts">Blog</Link>
+      </div>
+      <div className="flex justify-between gap-4">
+        <ThemeToggle />
       </div>
     </header>  
   )
