@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
-import { RxBookmark, RxChatBubble, RxDividerVertical, RxEnter, RxHome, RxPerson } from "react-icons/rx";
+import { RxBookmark, RxChatBubble, RxCode, RxDividerVertical, RxEnter, RxHome, RxPerson } from "react-icons/rx";
 import { RiFacebookFill, RiGithubFill, RiTwitterFill, RiYoutubeFill } from "react-icons/ri";
 
 export default function Header() {
@@ -18,6 +18,10 @@ export default function Header() {
         <Link href="/about" className="max-sm:hidden">About</Link>
         <Link href="/about" className="sm:hidden">
           <RxPerson />
+        </Link>
+        <Link href="/projects" className="max-sm:hidden">Projects</Link>
+        <Link href="/projects" className="sm:hidden">
+          <RxCode />
         </Link>
       </div>
       <div className="flex justify-between gap-4">
