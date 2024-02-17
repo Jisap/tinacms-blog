@@ -19,14 +19,37 @@ export function ProjectListPageComponent(props: {
   return (
     <>
       <h1>My Projects</h1>
-      <div>
-        {projectList?.map((project: any) => (
-          <div key={project.node.id}>
-            <Link href={project.node._sys.filename}>
-              {project.node.title}
-            </Link>
-          </div>
-        ))}
+      <div className="mx-auto grid grid-cols gap-4 md:grid-cols-3 lg:mx-0">
+        <div className="grid grid-cols-1 gap-4">
+          {projectList?.filter((_:any, i:number) =>  i % 3===1) // i%3 verifica si el índice es divisible por 3 -> devuelve solo los multiplos de 3
+            .map((project: any) => (
+              <div key={project.node.id}>
+                <Link href={project.node._sys.filename}>
+                  {project.node.title}
+                </Link>
+              </div>
+            ))}
+        </div>
+        <div className="grid grid-cols-1 gap-4">
+          {projectList?.filter((_: any, i: number) => i % 3 === 0) // i%3 verifica si el índice es divisible por 3 -> devuelve solo los multiplos de 3
+            .map((project: any) => (
+              <div key={project.node.id}>
+                <Link href={project.node._sys.filename}>
+                  {project.node.title}
+                </Link>
+              </div>
+            ))}
+        </div>
+        <div className="grid grid-cols-1 gap-4">
+          {projectList?.filter((_: any, i: number) => i % 3 === 2) // i%3 verifica si el índice es divisible por 3 -> devuelve solo los multiplos de 3
+            .map((project: any) => (
+              <div key={project.node.id}>
+                <Link href={project.node._sys.filename}>
+                  {project.node.title}
+                </Link>
+              </div>
+            ))}
+        </div>
       </div>
     </>
   )
