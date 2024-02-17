@@ -55,8 +55,16 @@ export default defineConfig({
               return `/`
             }
             return undefined
+          },
+          filename: {
+            slugify: (values) => {
+              return `${(values.title || "")}`
+                .toLowerCase().replace(/ /g, "-")
+                .replace(/[^\w\.\/-\s]/gi, "")
+            }
           }
         },
+        
       },
       {
         name: "post",
@@ -100,6 +108,41 @@ export default defineConfig({
               return `${(values.title || "")}`
               .toLowerCase().replace(/ /g, "-")
               .replace(/[^\w\.\/-\s]/gi, "")
+            }
+          }
+        },
+      },
+      {
+        name: "project",
+        label: "Projects",
+        path: "content/project",
+        fields: [
+          {
+            name: "title",
+            type: "string",
+            label: "Title",
+            isTitle: true,
+            required: true,
+          },
+          {
+            name: "description",
+            type: "string",
+            label: "Description",
+            required: true
+          },
+          {
+            name: "link",
+            type: "string",
+            label: "Link",
+            required: true
+          },
+        ],
+        ui: {
+          filename: {
+            slugify: (values) => {
+              return `${(values.title || "")}`
+                .toLowerCase().replace(/ /g, "-")
+                .replace(/[^\w\.\/-\s]/gi, "")
             }
           }
         },
