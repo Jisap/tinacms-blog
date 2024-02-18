@@ -1,0 +1,23 @@
+# Consulta graphql que acepta un parámetro que es un filtro para los post
+
+query homePage($filter: PostFilter){ 
+
+# Solicita datos de la página
+  page(relativePath: "home.mdx"){
+    ...PageParts
+  }
+
+# solicita los últimos cinco posts ordenados por fecha. Para ello utiliza el campo postConnection generado por Tina CMS
+  postConnection(sort: "date", filter: $ filter, last: 5){
+    edges{
+      node{
+        title
+        date
+        id
+        _sys{
+          filename
+        }
+      }
+    }
+  }
+}

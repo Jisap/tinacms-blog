@@ -1,4 +1,4 @@
-import { PageComponent } from "@/components/app/page";
+import { HomePageComponent } from "@/components/app/home-page";
 import client from "@/tina/__generated__/client";
 import { notFound } from "next/navigation";
 
@@ -7,9 +7,7 @@ import { notFound } from "next/navigation";
 export default async function HomePage() {
 
   const result = await client.queries
-    .page({
-      relativePath: "/home.mdx"
-    })
+    .homePage()
     .then((result) => {
       return result
     })
@@ -18,5 +16,5 @@ export default async function HomePage() {
       return notFound()
     })
   
-  return <PageComponent {...result} />
+  return <HomePageComponent {...result} />
 }
