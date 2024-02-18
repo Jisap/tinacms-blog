@@ -3,6 +3,7 @@
 import { ProjectConnectionQuery } from "@/tina/__generated__/types";
 import Link from "next/link";
 import { useTina } from "tinacms/dist/react";
+import { LinkCard } from "../LinkCard";
 
 
 export function ProjectListPageComponent(props: {
@@ -23,31 +24,34 @@ export function ProjectListPageComponent(props: {
         <div className="grid grid-cols-1 gap-4">
           {projectList?.filter((_:any, i:number) =>  i % 3===1) // i%3 verifica si el índice es divisible por 3 -> devuelve solo los multiplos de 3
             .map((project: any) => (
-              <div key={project.node.id}>
-                <Link href={project.node._sys.filename}>
-                  {project.node.title}
-                </Link>
-              </div>
+              <LinkCard 
+                key={project.node.id}
+                link={project.node.link}
+                title={project.node.title}
+                description={project.node.description}
+              />
             ))}
         </div>
         <div className="grid grid-cols-1 gap-4">
           {projectList?.filter((_: any, i: number) => i % 3 === 0) // i%3 verifica si el índice es divisible por 3 -> devuelve solo los multiplos de 3
             .map((project: any) => (
-              <div key={project.node.id}>
-                <Link href={project.node._sys.filename}>
-                  {project.node.title}
-                </Link>
-              </div>
+              <LinkCard
+                key={project.node.id}
+                link={project.node.link}
+                title={project.node.title}
+                description={project.node.description}
+              />
             ))}
         </div>
         <div className="grid grid-cols-1 gap-4">
           {projectList?.filter((_: any, i: number) => i % 3 === 2) // i%3 verifica si el índice es divisible por 3 -> devuelve solo los multiplos de 3
             .map((project: any) => (
-              <div key={project.node.id}>
-                <Link href={project.node._sys.filename}>
-                  {project.node.title}
-                </Link>
-              </div>
+              <LinkCard
+                key={project.node.id}
+                link={project.node.link}
+                title={project.node.title}
+                description={project.node.description}
+              />
             ))}
         </div>
       </div>

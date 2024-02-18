@@ -18,7 +18,7 @@ export const LinkCard = ({link, title, description}: LinkCardProps) => {
       dark:hover:bg-zinc-800/10 md:gap-8"
     >
       <article className="p-4 md:p-8">
-        <h2 className="<-20 text-xl font-medium text-zinc-800 group-hover:text-black 
+        <h2 className="z-20 text-xl font-medium text-zinc-800 group-hover:text-black 
         dark:text-zinc-200 dark:group-hover:text-white lg:text-3xl">
           {title}
         </h2>
