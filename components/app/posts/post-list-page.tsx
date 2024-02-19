@@ -8,23 +8,44 @@ import { useTina } from "tinacms/dist/react";
 
 export function PostListPageComponent(props: {
   data: PostConnectionQuery // Trabaja con "content/post"
-  variables: {
-    
-  }
-    query: string
+  variables: {}
+  query: string
+  tag?: string
 }) {
 
   const { data } = useTina(props);            // Data es el objeto devuelto por la consulta GraphQL que se utiliza para obtener datos de Tina CMS.
-  const postList = data.postConnection.edges; // postConnection contiene información sobre la paginación de las publicaciones
-                                              // edge es un array cuyos items representan una publicación individual con información específica sobre ella.
+
+  const postList = props.tag                                    // Si las props incluyen un tag
+    ? data.postConnection.edges?.filter((post:any) => {         // se devuelve solo los posts que la contenga
+      if(post.node.tags && post.node.tags.includes(props.tag)){
+        return post
+      }
+  }): data.postConnection.edges
+
+
+  //const postList = data.postConnection.edges; // postConnection contiene información sobre la paginación de las publicaciones
+                                                // edge es un array cuyos items representan una publicación individual con información específica sobre ella.
 
   postList?.sort((a:any, b:any) => {
     const dateA: any=new Date(a.node.date)    // Se crea una nueva instancia de Date apartir de las fecha de los posts adayacentes en el array
     const dateB: any=new Date(b.node.date)
     return dateB - dateA  // Si la resta es - B es anterior a A, B debe estar antes en la ordenación. Proceso contrario si la resta es +
-  })
+  });
 
-  console.log(postList)
+  const tags = data?.postConnection?.edges?.reduce((acc:any, post:any) => {
+    if(post.node.tags){
+      post.node.tags.forEach((tag:any) => {
+        if(acc[tag]){
+          acc[tag]++
+        }else{
+          acc[tag]=1
+        }
+      })
+    }
+    return acc
+  },{})
+console.log(tags)
+  
   return (
     <>
       <h1>Blog</h1>
