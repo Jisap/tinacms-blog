@@ -1,6 +1,7 @@
 'use client'
 
 import { PostConnectionQuery } from "@/tina/__generated__/types";
+import moment from "moment";
 import Link from "next/link";
 import { useTina } from "tinacms/dist/react";
 
@@ -30,11 +31,14 @@ export function PostListPageComponent(props: {
       <div>
         <ul className="m-0 pl-0">
           {postList?.map((post:any) => ( 
-            <div key={post.node.id}>
+            <li key={post.node.id} className="mt-0 pb-2">
+              <div className="flex">
+                <span className="text-sm text-gray-400">{moment(post.node.date).format("MMM DD, YYYY")}</span>
+              </div>
               <Link href={`/posts/${post.node._sys.filename}`}>
                 {post.node.title}
               </Link>
-            </div>
+            </li>
           ))}
         </ul>
       </div>
