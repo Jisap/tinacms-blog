@@ -20,19 +20,19 @@ export function PostListPageComponent(props: {
       if(post.node.tags && post.node.tags.includes(props.tag)){
         return post
       }
-  }): data.postConnection.edges
+  }): data.postConnection.edges;                                // Si no lo incluyen se devuelven todos los posts  
 
 
   //const postList = data.postConnection.edges; // postConnection contiene información sobre la paginación de las publicaciones
                                                 // edge es un array cuyos items representan una publicación individual con información específica sobre ella.
 
-  postList?.sort((a:any, b:any) => {
+  postList?.sort((a:any, b:any) => {          // Ordenamiento de los posts
     const dateA: any=new Date(a.node.date)    // Se crea una nueva instancia de Date apartir de las fecha de los posts adayacentes en el array
-    const dateB: any=new Date(b.node.date)
+    const dateB: any=new Date(b.node.date)    // Idem para la segunda fecha
     return dateB - dateA  // Si la resta es - B es anterior a A, B debe estar antes en la ordenación. Proceso contrario si la resta es +
   });
 
-  const tags = data?.postConnection?.edges?.reduce((acc:any, post:any) => {
+  const tags = data?.postConnection?.edges?.reduce((acc:any, post:any) => { // Conteo de tags en cada post
     if(post.node.tags){
       post.node.tags.forEach((tag:any) => {
         if(acc[tag]){
