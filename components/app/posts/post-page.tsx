@@ -1,5 +1,6 @@
 'use client'
 
+import { CaptionImage, PullQuote, TextBox, TweetEmbed, VideoPlayer } from "@/components/RichText";
 import { PageQuery, PostQuery } from "@/tina/__generated__/types";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
@@ -23,7 +24,16 @@ export function PostPageComponent(props: {
         {title}
       </h1>
       <section data-tina-field={tinaField(data.post, "body")}>
-        <TinaMarkdown content={content} />
+        <TinaMarkdown 
+          content={content} 
+          components={{
+            TextBox,
+            TweetEmbed,
+            PullQuote,
+            CaptionImage,
+            VideoPlayer
+          }}   
+        />
       </section>
     </article>
   )

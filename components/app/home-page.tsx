@@ -5,6 +5,7 @@ import moment from "moment";
 import Link from "next/link";
 import { tinaField, useTina } from "tinacms/dist/react";
 import { TinaMarkdown } from "tinacms/dist/rich-text";
+import { TextBox, TweetEmbed, PullQuote, CaptionImage, VideoPlayer } from "../RichText";
 
 export function HomePageComponent(props: {
   data: HomePageQuery // La data se obtiene de una consulta graphql personalizada
@@ -26,7 +27,16 @@ export function HomePageComponent(props: {
       </h1>
       
       <article data-tina-field={tinaField(data.page, "body")}>
-        <TinaMarkdown content={content} />
+        <TinaMarkdown 
+          content={content} 
+          components={{
+            TextBox,
+            TweetEmbed,
+            PullQuote,
+            CaptionImage,
+            VideoPlayer
+          }} 
+        />
       </article>
       
       {
